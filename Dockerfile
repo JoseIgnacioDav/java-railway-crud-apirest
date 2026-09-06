@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY --from=build /app/app.jar .
 
-RUN useradd -u 1000 runtime && chown -R runtime:runtime /app
+RUN useradd runtime && chown -R runtime:runtime /app
 USER runtime
 
 # Declarar el argumento por defecto para evitar el aviso de variable no definida
