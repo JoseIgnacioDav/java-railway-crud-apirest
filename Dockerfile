@@ -16,6 +16,9 @@ COPY --from=build /app/app.jar .
 RUN useradd -u 1000 runtime && chown -R runtime:runtime /app
 USER runtime
 
+# Declarar el argumento por defecto para evitar el aviso de variable no definida
+ARG PORT=8080
 ENV PORT=${PORT}
 
-ENTRYPOINT java -Dserver.port=${PORT} -jar app.jar
+# Usar formato JSON recomendado
+ENTRYPOINT ["java", "-jar", "app.jar"]
